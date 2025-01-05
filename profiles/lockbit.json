@@ -1,0 +1,184 @@
+{
+  "name": "Lockbit Ransomware",
+  "description": "",
+  "references": [
+        "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a",
+        "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a",
+        "https://www.connectwise.com/resources/lockbit-profileg",
+        "https://socradar.io/dark-web-profile-lockbit-3-0-ransomware/",
+        "https://cloud.google.com/blog/topics/threat-intelligence/unc2165-shifts-to-evade-sanctions"
+  ],  
+  "operating_system":"windows",    
+  "AtomicTests": [
+    {
+      "TestNumber": 1,
+      "Description": "Rundll32 with Ordinal Value",
+      "Command": "Invoke-AtomicTest T1218.011 -TestNumber 11"
+    },
+    {
+      "TestNumber": 2,
+      "Description": "Windows - Discover domain trusts with nltest",
+      "Command": "Invoke-AtomicTest T1482 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 3,
+      "Description": "Basic Permission Groups Discovery Windows (Domain)",
+      "Command": "Invoke-AtomicTest T1069.002 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 4,
+      "Description": "Adfind - Enumerate Active Directory OUs",
+      "Command": "Invoke-AtomicTest T1482 -TestNumbers 4"
+    },    
+    {
+      "TestNumber": 5,
+      "Description": "Cached Credential Dump via Cmdkey",
+      "Command": "Invoke-AtomicTest T1003.005"
+    },
+    {
+      "TestNumber": 6,
+      "Description": "Create shortcut to cmd in startup folders",
+      "Command": "Invoke-AtomicTest T1547.009 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 7,
+      "Description": "Scheduled Task Startup Script",
+      "Command": "Invoke-AtomicTest T1053.005 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 8,
+      "Description": "WinPwn - UAC Bypass ccmstp technique",
+      "Command": "Invoke-AtomicTest T1548.002 -TestNumbers 19"
+    },
+    {
+      "TestNumber": 9,
+      "Description": "Rubeus kerberoast",
+      "Commands": [
+        "Invoke-AtomicTest T1558.003 -TestNumbers 2 -GetPrereqs",
+        "Invoke-AtomicTest T1558.003 -TestNumbers 2"
+      ]
+    },
+    {
+      "TestNumber": 10,
+      "Description": "SeDebugPrivilege token duplication",
+      "Command": "Invoke-AtomicTest T1134.001 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 11,
+      "Description": "Copy and Execute File with PsExec",
+      "Commands": [
+        "Invoke-AtomicTest T1021.002 -TestNumbers 3 -GetPrereqs",
+        "Invoke-AtomicTest T1021.002 -TestNumbers 3"
+      ]
+    },
+    {
+      "TestNumber": 12,
+      "Description": "Dump LSASS.exe Memory using ProcDump",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 1 -GetPrereqs",
+        "Invoke-AtomicTest T1003.001 -TestNumber 1"
+      ]
+    },
+    {
+      "TestNumber": 13,
+      "Description": "Offline Credential Theft With Mimikatz",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 6 -GetPrereqs",
+        "Invoke-AtomicTest T1003.001 -TestNumber 6"
+      ]
+    },
+    {
+      "TestNumber": 14,
+      "Description": "Tamper with Windows Defender ATP PowerShell",
+      "Command": "Invoke-AtomicTest T1562.001 -TestNumbers 5"
+    },
+    {
+      "TestNumber": 15,
+      "Description": "Windows - Stop service by killing process",
+      "Command": "Invoke-AtomicTest T1489 -TestNumbers 3"
+    },
+    {
+      "TestNumber": 16,
+      "Description": "LockBit Black - Modify Group policy settings -Powershell",
+      "Command": "Invoke-AtomicTest T1484.001 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 17,
+      "Description": "LockBit Black - Disable Privacy Settings Experience Using Registry -cmd",
+      "Command": "Invoke-AtomicTest T1484.001 -TestNumbers 32"
+    },
+    {
+      "TestNumber": 18,
+      "Description": "LockBit Black - Use Registry Editor to turn on automatic logon -cmd",
+      "Command": "Invoke-AtomicTest T1484.001 -TestNumbers 33"
+    },
+    {
+      "TestNumber": 19,
+      "Description": "LockBit Black - Disable Privacy Settings Experience Using Registry -Powershell",
+      "Command": "Invoke-AtomicTest T1484.001 -TestNumbers 34"
+    },
+    {
+      "TestNumber": 20,
+      "Description": "Disable Microsoft Defender Firewall via Registry",
+      "Command": "Invoke-AtomicTest T1562.004 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 21,
+      "Description": "Kill antimalware protected processes using Backstab",
+      "Commands": [
+        "Invoke-AtomicTest T1562.001 -TestNumbers 29 -GetPrereqs",
+        "Invoke-AtomicTest T1562.001 -TestNumbers 29"
+      ]
+    },    
+    {
+      "TestNumber": 22,
+      "Description": "Compress Data and lock with password for Exfiltration with 7zip",
+      "Commands": [
+        "Invoke-AtomicTest T1560.001 -TestNumbers 4 -GetPrereqs",
+        "Invoke-AtomicTest T1560.001 -TestNumbers 4"
+      ]
+    },
+    {
+      "TestNumber": 23,
+      "Description": "Exfiltrate data with rclone to cloud Storage - Mega (Windows)",
+      "Commands": [
+        "Invoke-AtomicTest T1567.002 -GetPrereqs",
+        "Invoke-AtomicTest T1567.002"
+      ]
+    },
+    {
+      "TestNumber": 24,
+      "Description": "Windows - Delete Volume Shadow Copies",
+      "Command": "Invoke-AtomicTest T1490 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 25,
+      "Description": "Windows - Disable Windows Recovery Console Repair",
+      "Command": "Invoke-AtomicTest T1490 -TestNumbers 4"
+    },
+    {
+      "TestNumber": 26,
+      "Description": "Data Encrypted with GPG4Win",
+      "Commands": [
+        "New-Item -ItemType File -Path \"$env:temp\\test.txt\" -Value \"Hello World!\" -Force",
+        "Invoke-AtomicTest T1486 -TestNumbers 6 -GetPrereqs",
+        "Invoke-AtomicTest T1486 -TestNumbers 6"
+      ]
+    },
+    {
+      "TestNumber": 27,
+      "Description": "PureLocker Ransom Note",
+      "Command": "Invoke-AtomicTest T1486 -TestNumbers 5"
+    },
+    {
+      "TestNumber": 28,
+      "Description": "Replace Desktop Wallpaper",
+      "Command": "Invoke-AtomicTest T1491.001 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 29,
+      "Description": "Clear Logs",
+      "Command": "Invoke-AtomicTest T1070.001 -TestNumbers 1"
+    }
+  ]
+}

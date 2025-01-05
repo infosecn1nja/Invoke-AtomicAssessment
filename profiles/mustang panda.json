@@ -1,0 +1,97 @@
+{
+    "name": "Mustang Panda",
+    "description": "Mustang Panda is a China-based cyber espionage threat actor that was first observed in 2017 but may have been conducting operations since at least 2014. Mustang Panda has targeted government entities, nonprofits, religious, and other non-governmental organizations in the U.S., Europe, Mongolia, Myanmar, Pakistan, and Vietnam, among others.",
+    "references": [
+        "https://unit42.paloaltonetworks.com/stately-taurus-attacks-se-asian-government",
+        "https://www.secureworks.com/research/bronze-president-targets-ngos",
+        "https://www.avira.com/en/blog/new-wave-of-plugx-targets-hong-kong",
+        "https://www.anomali.com/blog/china-based-apt-mustang-panda-targets-minority-groups-public-and-private-sector-organizations"
+    ],
+    "operating_system": "windows",
+    "AtomicTests": [
+        {
+            "TestNumber": 1,
+            "Description": "DLL Side-Loading using the Notepad++ GUP.exe binary",
+            "Commands": [
+                "Invoke-AtomicTest T1574.002 -TestNumber 1 -GetPrereqs",
+                "Invoke-AtomicTest T1574.002 -TestNumber 1"
+            ]
+        },
+        {
+            "TestNumber": 2,
+            "Description": "Mshta Executes Remote HTML Application (HTA)",
+            "Command": "Invoke-AtomicTest T1218.005 -TestNumbers 3"
+        },
+        {
+            "TestNumber": 3,
+            "Description": "InstallUtil Uninstall method call - /U variant",
+            "Command": "Invoke-AtomicTest T1218.004 -TestNumbers 5"
+        },
+        {
+            "TestNumber": 4,
+            "Description": "Create a Process using obfuscated Win32_Process",
+            "Command": "Invoke-AtomicTest T1047 -TestNumbers 8"
+        },
+        {
+            "TestNumber": 5,
+            "Description": "Basic Permission Groups Discovery Windows (Domain)",
+            "Command": "Invoke-AtomicTest T1069.002 -TestNumbers 1"
+        },
+        {
+            "TestNumber": 6,
+            "Description": "Remote System Discovery - nltest",
+            "Command": "Invoke-AtomicTest T1018 -TestNumbers 3"
+        },                
+        {
+            "TestNumber": 7,
+            "Description": "Process Discovery - tasklist",
+            "Command": "Invoke-AtomicTest T1057 -TestNumbers 2"
+        },
+        {
+            "TestNumber": 8,
+            "Description": "System Information Discovery",
+            "Command": "Invoke-AtomicTest T1082 -TestNumbers 1"
+        },
+        {
+            "TestNumber": 9,
+            "Description": "Remote System Discovery - arp",
+            "Command": "Invoke-AtomicTest T1018 -TestNumbers 5"
+        },
+        {
+            "TestNumber": 10,
+            "Description": "Adfind - Enumerate Active Directory Computer Objects",
+            "Commands": [
+              "Invoke-AtomicTest T1018 -TestNumbers 10 -GetPrereqs",
+              "Invoke-AtomicTest T1018 -TestNumbers 10"
+            ]
+        },
+        {
+            "TestNumber": 11,
+            "Description": "Reg Key Run",
+            "Command": "Invoke-AtomicTest T1547.001 -TestNumbers 1"
+        },
+        {
+            "TestNumber": 12,
+            "Description": "Persistence via WMI Event Subscription - CommandLineEventConsumer",
+            "Command": "Invoke-AtomicTest T1546.003 -TestNumbers 1"
+        },
+        {
+            "TestNumber": 13,
+            "Description": "TeamViewer Files Detected Test on Windows",
+            "Command": "Invoke-AtomicTest T1219 -TestNumbers 1"
+        },
+        {
+            "TestNumber": 14,
+            "Description": "Automated Collection Command Prompt",
+            "Command": "Invoke-AtomicTest T1119 -TestNumbers 1"
+        },
+        {
+            "TestNumber": 15,
+            "Description": "Compress Data for Exfiltration With Rar",
+            "Commands": [
+                "Invoke-AtomicTest T1560.001 -TestNumbers 1 -GetPrereqs",
+                "Invoke-AtomicTest T1560.001 -TestNumbers 1"
+            ]
+        }
+    ]
+}

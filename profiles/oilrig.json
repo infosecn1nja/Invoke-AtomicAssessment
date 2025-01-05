@@ -1,0 +1,99 @@
+{
+  "name": "OilRig",
+  "description": "OilRig is a suspected Iranian threat group that has targeted Middle Eastern and international victims since at least 2014. The group has targeted a variety of sectors, including financial, government, energy, chemical, and telecommunications. It appears the group carries out supply chain attacks, leveraging the trust relationship between organizations to attack their primary targets. The group works on behalf of the Iranian government based on infrastructure details that contain references to Iran, use of Iranian infrastructure, and targeting that aligns with nation-state interests.",
+  "references": [
+        "https://attack.mitre.org/groups/G0049/"
+  ],  
+  "operating_system":"windows",    
+  "AtomicTests": [
+    {
+      "TestNumber": 1,
+      "Description": "Maldoc choice flags command execution",
+      "Commands": [
+        "Invoke-AtomicTest T1204.002 -TestNumber 3 -GetPrereqs",
+        "Invoke-AtomicTest T1204.002 -TestNumber 3"
+      ] 
+    },
+    {
+      "TestNumber": 2,
+      "Description": "Compiled HTML Help Local Payload",
+      "Commands": [
+        "Invoke-AtomicTest T1218.001 -TestNumber 1 -GetPrereqs",
+        "Invoke-AtomicTest T1218.001 -TestNumber 1"
+      ]      
+    },    
+    {
+      "TestNumber": 3,
+      "Description": "Basic Permission Groups Discovery Windows (Domain)",
+      "Command": "Invoke-AtomicTest T1069.002 -TestNumber 1"
+    },
+    {
+      "TestNumber": 4,
+      "Description": "System Information Discovery",
+      "Command": "Invoke-AtomicTest T1082 -TestNumber 1"
+    },  
+    {
+      "TestNumber": 5,
+      "Description": "Basic Permission Groups Discovery Windows (Local)",
+      "Command": "Invoke-AtomicTest T1069.001 -TestNumber 2"
+    },    
+    {
+      "TestNumber": 6,
+      "Description": "System Network Configuration Discovery on Windows",
+      "Command": "Invoke-AtomicTest T1016 -TestNumber 1"
+    },        
+    {
+      "TestNumber": 7,
+      "Description": "Process Discovery - tasklist",
+      "Command": "Invoke-AtomicTest T1057 -TestNumber 2"
+    },
+    {
+      "TestNumber": 8,
+      "Description": "Security Software Discovery - AV Discovery via WMI",
+      "Command": "Invoke-AtomicTest T1518.001 -TestNumber 7"
+    },
+    {
+      "TestNumber": 9,
+      "Description": "Detect Virtualization Environment (Windows)",
+      "Command": "Invoke-AtomicTest T1497.001 -TestNumber 3"
+    },
+    {
+      "TestNumber": 10,
+      "Description": "WinPwn - Loot local Credentials - lazagne",
+      "Command": "Invoke-AtomicTest T1555 -TestNumber 6"
+    },
+   {
+      "TestNumber": 11,
+      "Description": "Offline Credential Theft With Mimikatz",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 6 -GetPrereqs",
+        "Invoke-AtomicTest T1003.001 -TestNumber 6"
+      ]
+    },   
+    {
+      "TestNumber": 12,
+      "Description": "Windows Screencapture",
+      "Command": "Invoke-AtomicTest T1113 -TestNumber 7"
+    }, 
+    {
+      "TestNumber": 13,
+      "Description": " Input Capture",
+      "Command": "Invoke-AtomicTest T1056.001 -TestNumber 1"
+    }, 
+    {
+      "TestNumber": 14,
+      "Description": "Scheduled Task Startup Script",
+      "Command": "Invoke-AtomicTest T1053.005 -TestNumber 1"
+    },      
+    {
+      "TestNumber": 15,
+      "Description": "Office Application Startup: Outlook Home Page",
+      "Command": "Invoke-AtomicTest T1137.004 -TestNumber 1"
+    },
+    {
+      "TestNumber": 16,
+      "Description": "Delete a single file - Windows cmd",
+      "Command": "Invoke-AtomicTest T1070.004 -TestNumber 4"
+    }    
+  ]
+}            

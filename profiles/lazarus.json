@@ -1,0 +1,142 @@
+{
+  "name": "Lazarus Group",
+  "description": "Lazarus Group is a North Korean state-sponsored cyber threat group that has been attributed to the Reconnaissance General Bureau. The group has been active since at least 2009 and was reportedly responsible for the November 2014 destructive wiper attack against Sony Pictures Entertainment as part of a campaign named Operation Blockbuster by Novetta. Malware used by Lazarus Group correlates to other reported campaigns, including Operation Flame, Operation 1Mission, Operation Troy, DarkSeoul, and Ten Days of Rain.",
+  "references": [
+        "https://attack.mitre.org/groups/G0032/",
+        "https://www.clearskysec.com/wp-content/uploads/2020/08/Dream-Job-Campaign.pdf",
+        "https://securelist.com/lazarus-new-malware/115059/",
+        "https://blog.talosintelligence.com/lazarus-quiterat/",
+        "https://ti.qianxin.com/blog/articles/Analysis-of-Suspected-Lazarus-APT-Q-1-Attack-Sample-Targeting-npm-Package-Supply-Chain-EN/",
+        "https://ics-cert.kaspersky.com/publications/reports/2021/02/25/lazarus-targets-defense-industry-with-threatneedle/",
+        "https://labs.withsecure.com/publications/catching-lazarus-threat-intelligence-to-real-detection-logic-part-two"
+  ],  
+  "operating_system":"windows",    
+  "AtomicTests": [
+    {
+      "TestNumber": 1,
+      "Description": "User Execution: Malicious Image",
+      "Command": "Invoke-AtomicTest T1204.003 -TestNumber 1"
+    },
+    {
+      "TestNumber": 2,
+      "Description": "WINWORD Remote Template Injection",
+      "Command": "Invoke-AtomicTest T1221 -TestNumber 1"
+    },
+    {
+      "TestNumber": 3,
+      "Description": "WMIC bypass using remote XSL file",
+      "Command": "Invoke-AtomicTest T1220 -TestNumber 4"
+    },    
+    {
+      "TestNumber": 4,
+      "Description": "Masquerading - wscript.exe running as svchost.exe",
+      "Command": "Invoke-AtomicTest T1036.003 -TestNumber 4"
+    },
+    {
+        "TestNumber": 5,
+        "Description": "Load Arbitrary DLL via Wuauclt (Windows Update Client)",
+        "Commands": [
+            "Invoke-AtomicTest T1218 -TestNumbers 9 -GetPrereqs",
+            "Invoke-AtomicTest T1218 -TestNumbers 9"
+        ]
+    },  
+    {
+        "TestNumber": 6,
+        "Description": "Mshta Executes Remote HTML Application (HTA)",
+        "Command": "Invoke-AtomicTest T1218.005 -TestNumber 3"
+    },  
+    {
+        "TestNumber": 7,
+        "Description": "Load Arbitrary DLL via Wuauclt (Windows Update Client)",
+        "Commands": [
+            "Invoke-AtomicTest T1218 -TestNumbers 9 -GetPrereqs",
+            "Invoke-AtomicTest T1218 -TestNumbers 9"
+        ]
+    },            
+    {
+      "TestNumber": 8,
+      "Description": "Enumerate logged on users via CMD (Domain)",
+      "Command": "Invoke-AtomicTest T1087.002 -TestNumber 3"
+    },
+    {
+      "TestNumber": 9,
+      "Description": "System Network Connections Discovery",
+      "Command": "Invoke-AtomicTest T1049 -TestNumber 1"
+    },  
+     {
+      "TestNumber": 10,
+      "Description": "System Information Discovery",
+      "Command": "Invoke-AtomicTest T1082 -TestNumber 1"
+    },            
+    {
+      "TestNumber": 11,
+      "Description": "Modify registry to store logon credentials",
+      "Command": "Invoke-AtomicTest T1112 -TestNumbers 3"
+    }, 
+    {
+      "TestNumber": 12,
+      "Description": "LaZagne - Credentials from Browser",
+      "Commands": [
+        "Invoke-AtomicTest T1555.003 -TestNumber 3 -GetPrereqs",
+        "Invoke-AtomicTest T1555.003 -TestNumber 3"
+      ]
+    }, 
+    {
+      "TestNumber": 13,
+      "Description": "Offline Credential Theft With Mimikatz",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 6 -GetPrereqs",
+        "Invoke-AtomicTest T1003.001 -TestNumber 6"
+      ]
+    },    
+    {
+      "TestNumber": 14,
+      "Description": "Scheduled Task Startup Script",
+      "Command": "Invoke-AtomicTest T1053.005 -TestNumbers 1"
+    },           
+    {
+      "TestNumber": 15,
+      "Description": "Disable Microsoft Defender Firewall",
+      "Command": "Invoke-AtomicTest T1562.004 -TestNumber 1"
+    },
+    {
+      "TestNumber": 16,
+      "Description": "Process Injection with Go using UuidFromStringA WinAPI",
+      "Commands": [
+        "Invoke-AtomicTest T1055 -TestNumbers 6 -GetPrereqs",
+        "Invoke-AtomicTest T1055 -TestNumbers 6"
+      ]      
+    },
+    {
+      "TestNumber": 17,
+      "Description": "Create shortcut to cmd in startup folders",
+      "Command": "Invoke-AtomicTest T1547.009 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 18,
+      "Description": "Admin Account Manipulate",
+      "Command": "Invoke-AtomicTest T1098 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 19,
+      "Description": "Copy and Execute File with PsExec",
+      "Commands": [
+            "Invoke-AtomicTest T1021.002 -TestNumbers 3 -GetPrereqs",
+            "Invoke-AtomicTest T1021.002 -TestNumbers 3"
+        ]    
+    },    
+    {
+        "TestNumber": 20,
+        "Description": "Compress Data for Exfiltration With Rar",
+        "Commands": [
+            "Invoke-AtomicTest T1560.001 -TestNumbers 1 -GetPrereqs",
+            "Invoke-AtomicTest T1560.001 -TestNumbers 1"
+        ]
+    },
+    {
+      "TestNumber": 21,
+      "Description": "Clear Logs",
+      "Command": "Invoke-AtomicTest T1070.001 -TestNumbers 1"
+    }            
+  ]
+}

