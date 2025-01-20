@@ -171,8 +171,10 @@ function Invoke-AtomicAssessment {
     $timestamp = Get-Date -Format "yyyyMMddHHmmss"
     $outputFileName = "$outputDir\$Adversary`_result_$hostname`_$timestamp.json"
 
-    # Output the final JSON object
-    $finalResult | ConvertTo-Json -Depth 10 | Out-File -FilePath $outputFileName -Encoding utf8
+    # Output the final JSON object, in UTF-8
+    $jsonContent = $finalResult | ConvertTo-Json -Depth 10
+    $utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllText($outputFileName, $jsonContent, $utf8NoBomEncoding)
 
     # Delete the temporary folder
     Remove-Item -Recurse -Force -Path $outputPath  
