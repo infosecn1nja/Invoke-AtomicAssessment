@@ -1,0 +1,297 @@
+{
+  "name": "APT29",
+  "description": "APT29 is threat group that has been attributed to Russia's Foreign Intelligence Service (SVR). They have operated since at least 2008, often targeting government networks in Europe and NATO member countries, research institutes, and think tanks. APT29 reportedly compromised the Democratic National Committee starting in the summer of 2015. Aka: ATK7, Blue Kitsune, BlueBravo, COZY BEAR, Cloaked Ursa, G0016, Grizzly Steppe, Group 100, IRON HEMLOCK, ITG11, Midnight Blizzard, Minidionis, Nobelium, SeaDuke, TA421, The Dukes, UAC-0029, YTTRIUM",
+  "references": [
+        "https://attack.mitre.org/groups/G0016/",
+        "https://en.wikipedia.org/wiki/Cozy_Bear",
+        "https://malpedia.caad.fkie.fraunhofer.de/actor/apt29"
+  ],
+  "operating_system":"windows",    
+  "AtomicTests": [
+    {
+      "TestNumber": 1,
+      "Description": "Maldoc choice flags command execution",
+      "Command": "Invoke-AtomicTest T1204.002 -TestNumber 3"
+    },
+    {
+      "TestNumber": 2,
+      "Description": "Malware Masquerading and Execution from Zip File",
+      "Command": "Invoke-AtomicTest T1036 -TestNumber 2"
+    },
+    {
+      "TestNumber": 3,
+      "Description": "Non-Application Layer Protocol - Netcat C2",
+      "Commands": "Invoke-AtomicTest T1095 -TestNumber 2"
+    },
+    {
+      "TestNumber": 4,
+      "Description": "Encrypted Channel - OpenSSL C2",
+      "Command": "Invoke-AtomicTest T1573 -TestNumber 1"
+    },
+    {
+      "TestNumber": 5,
+      "Description": "Suspicious Execution via Windows Command Shell",
+      "Command": "Invoke-AtomicTest T1059.003 -TestNumber 3"
+    },
+    {
+      "TestNumber": 6,
+      "Description": "Command and Scripting Interpreter: PowerShell Command Execution",
+      "Command": "Invoke-AtomicTest T1059.001 -TestNumber 17"
+    },
+    {
+      "TestNumber": 7,
+      "Description": "File and Directory Discovery (PowerShell)",
+      "Command": "Invoke-AtomicTest T1083 -TestNumber 2"
+    },
+    {
+      "TestNumber": 8,
+      "Description": "Recon information for export with PowerShell",
+      "Command": "Invoke-AtomicTest T1119 -TestNumber 3"
+    },
+    {
+      "TestNumber": 9,
+      "Description": "Search files of interest and save them to a single zip file (Windows)",
+      "Command": "Invoke-AtomicTest T1005 -TestNumber 1"
+    },
+    {
+      "TestNumber": 10,
+      "Description": "Compress Data for Exfiltration With Rar",
+      "Command": "Invoke-AtomicTest T1560.001 -TestNumber 1"
+    },    
+    {
+      "TestNumber": 11,
+      "Description": "C2 Data Exfiltration",
+      "Command": "Invoke-AtomicTest T1041 -TestNumber 1"
+    },
+    {
+      "TestNumber": 12,
+      "Description": "svchost writing a file to a UNC path",
+      "Command": "Invoke-AtomicTest T1105 -TestNumber 12"
+    },
+    {
+      "TestNumber": 13,
+      "Description": "Obfuscated Command in PowerShell",
+      "Command": "Invoke-AtomicTest T1027 -TestNumber 7"
+    },
+    {
+      "TestNumber": 14,
+      "Description": "Powershell Execute COM Object",
+      "Command": "Invoke-AtomicTest T1546.015 -TestNumber 2"
+    },
+    {
+      "TestNumber": 15,
+      "Description": "Powershell - Disable UAC using reg.exe",
+      "Command": "Invoke-AtomicTest T1548.002 -TestNumber 8"
+    },
+    {
+      "TestNumber": 16,
+      "Description": "Malicious User Agents - Powershell",
+      "Command": "Invoke-AtomicTest T1071.001 -TestNumber 1"
+    },
+    {
+      "TestNumber": 17,
+      "Description": "Encrypted Channel - OpenSSL C2",
+      "Command": "Invoke-AtomicTest T1573 -TestNumber 1"
+    },
+    {
+      "TestNumber": 18,
+      "Description": "DisallowRun Execution Of Certain Applications",
+      "Commands": "Invoke-AtomicTest T1112 -TestNumber 44"
+    },
+    {
+      "TestNumber": 19,
+      "Description": "Deobfuscate/Decode Files Or Information",
+      "Command": "Invoke-AtomicTest T1140 -TestNumber 1"
+    },
+    {
+      "TestNumber": 20,
+      "Description": "Powershell - Process Discovery - Get-Process",
+      "Command": "Invoke-AtomicTest T1057 -TestNumber 3"
+    },
+	{
+      "TestNumber": 21,
+      "Description": "Powershell - Delete an entire folder",
+      "Command": "Invoke-AtomicTest T1070.004 -TestNumber 7"
+    },
+	{
+      "TestNumber": 22,
+      "Description": "Powershell - File and Directory Discovery",
+      "Command": "Invoke-AtomicTest T1083 -TestNumber 2"
+    },
+	{
+      "TestNumber": 23,
+      "Description": "Environment variables discovery on windows",
+      "Command": "Invoke-AtomicTest T1082 -TestNumber 11"
+    },
+	{
+      "TestNumber": 24,
+      "Description": "System Network Configuration Discovery on Windows",
+      "Command": "Invoke-AtomicTest T1016 -TestNumber 1"
+    },
+	{
+      "TestNumber": 25,
+      "Description": "Powershell - Process Discovery - Get-Process",
+      "Command": "Invoke-AtomicTest T1057 -TestNumber 3"
+    },
+	{
+      "TestNumber": 26,
+      "Description": "Powershell - Security Software Discovery",
+      "Command": "Invoke-AtomicTest T1518.001 -TestNumber 2"
+    },
+	{
+      "TestNumber": 27,
+      "Description": "Powershell - Permission Groups Discovery (Domain)",
+      "Command": "Invoke-AtomicTest T1069.002 -TestNumber 2"
+    },
+	{
+      "TestNumber": 28,
+      "Description": "Execution through API - CreateProcess",
+      "Command": "Invoke-AtomicTest T1106 -TestNumber 1"
+    },
+	{
+      "TestNumber": 29,
+      "Description": "Powershell - Permission Groups Discovery (Local)",
+      "Command": "Invoke-AtomicTest T1069.001 -TestNumber 3"
+    },
+	{
+      "TestNumber": 30,
+      "Description": "Service Installation PowerShell",
+      "Command": "Invoke-AtomicTest T1543.003 -TestNumber 3"
+    },
+	{
+      "TestNumber": 31,
+      "Description": "Add Executable Shortcut Link to User Startup Folder",
+      "Command": "Invoke-AtomicTest T1547.001 -TestNumber 7"
+    },
+	{
+      "TestNumber": 32,
+      "Description": "List Credential Files via PowerShell",
+      "Command": "Invoke-AtomicTest T1552.001 -TestNumber 13"
+    },
+	{
+      "TestNumber": 33,
+      "Description": "Dump Chrome Login Data with esentutl",
+      "Command": "Invoke-AtomicTest T1555.003 -TestNumber 17"
+    },
+	{
+      "TestNumber": 34,
+      "Description": "Masquerade as a built-in system executable",
+      "Command": "Invoke-AtomicTest T1036.005 -TestNumber 2"
+    },
+	{
+      "TestNumber": 35,
+      "Description": "CertUtil ExportPFX",
+      "Command": "Invoke-AtomicTest T1552.004 -TestNumber 11"
+    },
+	{
+      "TestNumber": 36,
+      "Description": "Powershell Mimikatz - OS Credential Dumping: LSASS Memory",
+      "Command": "Invoke-AtomicTest T1003.002 -TestNumber 10"
+    },
+	{
+      "TestNumber": 37,
+      "Description": "Windows Screen Capture (CopyFromScreen)",
+      "Command": "Invoke-AtomicTest T1113 -TestNumber 8"
+    },
+	{
+      "TestNumber": 38,
+      "Description": "Execute Commands from Clipboard using PowerShell",
+      "Command": "Invoke-AtomicTest T1115 -TestNumber 2"
+    },
+	{
+      "TestNumber": 39,
+      "Description": "PowerShell - Input Capture",
+      "Command": "Invoke-AtomicTest T1056.001 -TestNumber 1"
+    },
+	{
+      "TestNumber": 40,
+      "Description": "Search files of interest and save them to a single zip file",
+      "Command": "Invoke-AtomicTest T1005 -TestNumber 1"
+    },
+	{
+      "TestNumber": 41,
+      "Description": "Compress Data and lock with password for Exfiltration with winzip",
+      "Command": "Invoke-AtomicTest T1560.001 -TestNumber 3"
+    },
+	{
+      "TestNumber": 42,
+      "Description": "Exfiltration Over Alternative Protocol - HTTP",
+      "Command": "Invoke-AtomicTest T1048.003 -TestNumber 4"
+    },
+	{
+      "TestNumber": 43,
+      "Description": "PowerShell - Enumerate Active Directory Computers with Get-AdComputer",
+      "Command": "Invoke-AtomicTest T1018 -TestNumber 17"
+    },
+	{
+      "TestNumber": 44,
+      "Description": "WinRM Access with Evil-WinRM",
+      "Command": "Invoke-AtomicTest T1021.006 -TestNumber 3"
+    },
+	{
+      "TestNumber": 45,
+      "Description": "Copy and Execute File with PsExec",
+      "Command": "Invoke-AtomicTest T1021.002 -TestNumber 3"
+    },
+	{
+      "TestNumber": 46,
+      "Description": "Use PsExec to execute a command on a remote host",
+      "Command": "Invoke-AtomicTest T1569.002 -TestNumber 2"
+    },
+	{
+      "TestNumber": 47,
+      "Description": "Powershell invoke mshta.exe download",
+      "Command": "Invoke-AtomicTest T1059.001 -TestNumber 8"
+    },
+	{
+      "TestNumber": 48,
+      "Description": "Powershell - Zip a Folder with PowerShell for Staging in Temp",
+      "Command": "Invoke-AtomicTest T1074.001 -TestNumber 3"
+    },
+	{
+      "TestNumber": 49,
+      "Description": "Powershell - Compress Data and lock with password for Exfiltration with winrar",
+      "Command": "Invoke-AtomicTest T1560.001 -TestNumber 2"
+    },
+	{
+      "TestNumber": 50,
+      "Description": "Delete a single file - Windows cmd",
+      "Command": "Invoke-AtomicTest T1070.004 -TestNumber 4"
+    },
+	{
+      "TestNumber": 51,
+      "Description": "Delete an entire folder - Windows cmd",
+      "Command": "Invoke-AtomicTest T1070.004 -TestNumber 5"
+    },
+	{
+      "TestNumber": 52,
+      "Description": "Delete an entire folder - Windows cmd",
+      "Command": "Invoke-AtomicTest T1070.004 -TestNumber 5"
+    },
+	{
+      "TestNumber": 53,
+      "Description": "Execute a Command as a Service",
+      "Command": "Invoke-AtomicTest T1569.002 -TestNumber 1"
+    },
+	{
+      "TestNumber": 54,
+      "Description": "Suspicious bat file run from startup Folder",
+      "Command": "Invoke-AtomicTest T1547.001 -TestNumber 6"
+    },
+	{
+      "TestNumber": 55,
+      "Description": "Execution through API - CreateProcess",
+      "Command": "Invoke-AtomicTest T1106 -TestNumber 1"
+    },
+	{
+      "TestNumber": 56,
+      "Description": "Execution through API - CreateProcess",
+      "Command": "Invoke-AtomicTest T1134.002 -TestNumber 1"
+    },
+	{
+      "TestNumber": 57,
+      "Description": "Execution through API - CreateProcess",
+      "Command": "Invoke-AtomicTest T1134.002 -TestNumber 2"
+    }
+  ]
+}
