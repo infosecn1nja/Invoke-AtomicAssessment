@@ -139,7 +139,7 @@ function Invoke-AtomicAssessment {
     # Get dynamic information
     $username = Get-UserInfo
     $hostname = Get-HostInfo
-    $ip_address = Get-IPInfo
+    $ip_address = (Get-NetIPAddress -AddressFamily IPv4 | Select-Object -First 1).IPAddress
     $executionID = Generate-ExecutionID
 
     # Create the final JSON object with the additional parameters
@@ -164,15 +164,17 @@ function Invoke-AtomicAssessment {
     }
 
     # Define output directory and filename
-    $outputDir = ".\output"
+    $outputDir = (Get-Location).Path+"\output"
     if (-not (Test-Path $outputDir)) {
         New-Item -ItemType Directory -Path $outputDir | Out-Null
     }
     $timestamp = Get-Date -Format "yyyyMMddHHmmss"
     $outputFileName = "$outputDir\$Adversary`_result_$hostname`_$timestamp.json"
 
-    # Output the final JSON object
-    $finalResult | ConvertTo-Json -Depth 10 | Out-File -FilePath $outputFileName -Encoding utf8
+    # Output the final JSON object, in UTF-8
+    $jsonContent = $finalResult | ConvertTo-Json -Depth 10
+    $utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllText($outputFileName, $jsonContent, $utf8NoBomEncoding)
 
     # Delete the temporary folder
     Remove-Item -Recurse -Force -Path $outputPath  
