@@ -7,7 +7,7 @@ Invoke-AtomicAssessment is a powerful tool designed to facilitate adversary emul
 The tool includes a collection of pre-configured threat actor profiles, which can be used to simulate specific adversaries or attack scenarios. Below is a list of available profiles:
 - Akira: A ransomware group known for targeting enterprises.
 - APT41: A Chinese state-sponsored threat group involved in cyber espionage and financial gain.
-- APT29 - Scenario 1: A threat group attributed to the Russian government and has operated since at least 2008.
+- APT29: A threat group attributed to the Russian government and has operated since at least 2008.
 - BlackCat (ALPHV): A ransomware-as-a-service (RaaS) group targeting multiple industries.
 - Lazarus: A North Korean APT group linked to cyber espionage and destructive attacks.
 - LockBit: A prolific ransomware group known for its fast encryption and double extortion tactics.
