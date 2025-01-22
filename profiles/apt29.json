@@ -16,12 +16,18 @@
     {
       "TestNumber": 2,
       "Description": "Malware Masquerading and Execution from Zip File",
-      "Command": "Invoke-AtomicTest T1036 -TestNumber 2"
+      "Commands": [
+        "Invoke-AtomicTest T1036 -TestNumber 2 -GetPrereqs",
+        "Invoke-AtomicTest T1036 -TestNumber 2"
+      ]
     },
     {
       "TestNumber": 3,
       "Description": "Non-Application Layer Protocol - Netcat C2",
-      "Commands": "Invoke-AtomicTest T1095 -TestNumber 2"
+      "Commands": [
+        "Invoke-AtomicTest T1095 -TestNumber 2 -GetPrereqs",
+        "Invoke-AtomicTest T1095 -TestNumber 2"
+      ]
     },
     {
       "TestNumber": 4,
@@ -211,7 +217,10 @@
 	{
       "TestNumber": 41,
       "Description": "Compress Data and lock with password for Exfiltration with winzip",
-      "Command": "Invoke-AtomicTest T1560.001 -TestNumber 3"
+      "Commands": [
+        "Invoke-AtomicTest T1560.001 -TestNumber 3 -GetPrereqs",
+        "Invoke-AtomicTest T1560.001 -TestNumber 3"
+      ]
     },
 	{
       "TestNumber": 42,
@@ -226,17 +235,26 @@
 	{
       "TestNumber": 44,
       "Description": "WinRM Access with Evil-WinRM",
-      "Command": "Invoke-AtomicTest T1021.006 -TestNumber 3"
+      "Commands": [
+        "Invoke-AtomicTest T1021.006 -TestNumber 3 -GetPrereqs",
+        "Invoke-AtomicTest T1021.006 -TestNumber 3"
+      ]
     },
 	{
       "TestNumber": 45,
       "Description": "Copy and Execute File with PsExec",
-      "Command": "Invoke-AtomicTest T1021.002 -TestNumber 3"
+      "Commands": [
+        "Invoke-AtomicTest T1021.002 -TestNumber 3 -GetPrereqs",
+        "Invoke-AtomicTest T1021.002 -TestNumber 3"
+      ]
     },
 	{
       "TestNumber": 46,
       "Description": "Use PsExec to execute a command on a remote host",
-      "Command": "Invoke-AtomicTest T1569.002 -TestNumber 2"
+      "Commands": [
+        "Invoke-AtomicTest T1569.002 -TestNumber 2 -GetPrereqs",
+        "Invoke-AtomicTest T1569.002 -TestNumber 2"
+      ]
     },
 	{
       "TestNumber": 47,
@@ -251,7 +269,10 @@
 	{
       "TestNumber": 49,
       "Description": "Powershell - Compress Data and lock with password for Exfiltration with winrar",
-      "Command": "Invoke-AtomicTest T1560.001 -TestNumber 2"
+      "Commands": [
+        "Invoke-AtomicTest T1560.001 -TestNumber 2 -GetPrereqs",
+        "Invoke-AtomicTest T1560.001 -TestNumber 2"
+      ]
     },
 	{
       "TestNumber": 50,
