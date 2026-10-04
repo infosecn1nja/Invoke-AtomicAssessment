@@ -1,0 +1,220 @@
+{
+  "name": "Black Basta Ransomware",
+  "description": "Black Basta is a Ransomware-as-a-Service (RaaS) group active since April 2022 that has impacted over 500 organizations globally across North America, Europe, and Australia. Affiliates gain initial access via Qakbot phishing, exploitation of ConnectWise ScreenConnect (CVE-2024-1709), and valid accounts purchased from Initial Access Brokers, then escalate privileges using ZeroLogon, PrintNightmare, and NoPac before deploying Cobalt Strike, Mimikatz, SoftPerfect NetScan, BITSAdmin, PsExec, RDP, ScreenConnect, and Splashtop for discovery and lateral movement. The group uses the Backstab tool to disable EDR/AV, exfiltrates data with RClone/WinSCP for double-extortion, and encrypts files with a ChaCha20 + RSA-4096 hybrid scheme, appending the .basta extension.",
+  "references": [
+    "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-131a",
+    "https://www.ic3.gov/CSA/2024/240511.pdf",
+    "https://www.picussecurity.com/resource/blog/black-basta-ransomware-analysis-cisa-alert-aa24-131a",
+    "https://www.attackiq.com/2024/05/17/response-to-cisa-advisory-aa24-131a/"
+  ],
+  "operating_system": "windows",
+  "AtomicTests": [
+    {
+      "TestNumber": 1,
+      "Description": "Network Service Discovery (Nmap for Windows) - emulates SoftPerfect Network Scanner recon",
+      "Commands": [
+        "Invoke-AtomicTest T1046 -TestNumbers 3 -GetPrereqs",
+        "Invoke-AtomicTest T1046 -TestNumbers 3"
+      ]
+    },
+    {
+      "TestNumber": 2,
+      "Description": "Windows - Discover domain trusts with nltest",
+      "Command": "Invoke-AtomicTest T1482 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 3,
+      "Description": "Adfind - Enumerate Active Directory OUs",
+      "Commands": [
+        "Invoke-AtomicTest T1482 -TestNumbers 4 -GetPrereqs",
+        "Invoke-AtomicTest T1482 -TestNumbers 4"
+      ]
+    },
+    {
+      "TestNumber": 4,
+      "Description": "Basic Permission Groups Discovery Windows (Domain)",
+      "Command": "Invoke-AtomicTest T1069.002 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 5,
+      "Description": "Enumerate all accounts (Domain)",
+      "Command": "Invoke-AtomicTest T1087.002 -TestNumber 1"
+    },
+    {
+      "TestNumber": 6,
+      "Description": "Process Discovery with tasklist",
+      "Command": "Invoke-AtomicTest T1057 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 7,
+      "Description": "Remote System Discovery with nltest",
+      "Command": "Invoke-AtomicTest T1018 -TestNumbers 3"
+    },
+    {
+      "TestNumber": 8,
+      "Description": "System Network Configuration Discovery on Windows",
+      "Command": "Invoke-AtomicTest T1016 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 9,
+      "Description": "Dump LSASS.exe Memory using ProcDump",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 1 -GetPrereqs",
+        "Invoke-AtomicTest T1003.001 -TestNumber 1"
+      ]
+    },
+    {
+      "TestNumber": 10,
+      "Description": "Offline Credential Theft With Mimikatz",
+      "Commands": [
+        "Invoke-AtomicTest T1003.001 -TestNumber 6 -GetPrereqs",
+        "Invoke-AtomicTest T1003.001 -TestNumber 6"
+      ]
+    },
+    {
+      "TestNumber": 11,
+      "Description": "Cached Credential Dump via Cmdkey",
+      "Command": "Invoke-AtomicTest T1003.005"
+    },
+    {
+      "TestNumber": 12,
+      "Description": "Registry dump of SAM, creds, and secrets",
+      "Command": "Invoke-AtomicTest T1003.002 -TestNumber 1"
+    },
+    {
+      "TestNumber": 13,
+      "Description": "Create shortcut to cmd in startup folders",
+      "Command": "Invoke-AtomicTest T1547.009 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 14,
+      "Description": "Scheduled Task Startup Script",
+      "Command": "Invoke-AtomicTest T1053.005 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 15,
+      "Description": "Create Account: Domain Account - Powershell",
+      "Command": "Invoke-AtomicTest T1136.002 -TestNumbers 3"
+    },
+    {
+      "TestNumber": 16,
+      "Description": "WinPwn - UAC Bypass ccmstp technique",
+      "Command": "Invoke-AtomicTest T1548.002 -TestNumbers 19"
+    },
+    {
+      "TestNumber": 17,
+      "Description": "SeDebugPrivilege token duplication",
+      "Command": "Invoke-AtomicTest T1134.001 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 18,
+      "Description": "Impair Defenses - Kill antimalware protected processes using Backstab",
+      "Commands": [
+        "Invoke-AtomicTest T1685 -TestNumbers 32 -GetPrereqs",
+        "Invoke-AtomicTest T1685 -TestNumbers 32"
+      ]
+    },
+    {
+      "TestNumber": 19,
+      "Description": "Disable Microsoft Defender Firewall via Registry",
+      "Command": "Invoke-AtomicTest T1686 -TestNumbers 2"
+    },
+    {
+      "TestNumber": 20,
+      "Description": "Ingress Tool Transfer - BITSAdmin BITS Download",
+      "Command": "Invoke-AtomicTest T1105 -TestNumber 9"
+    },
+    {
+      "TestNumber": 21,
+      "Description": "Copy and Execute File with PsExec",
+      "Commands": [
+        "Invoke-AtomicTest T1021.002 -TestNumbers 3 -GetPrereqs",
+        "Invoke-AtomicTest T1021.002 -TestNumbers 3"
+      ]
+    },
+    {
+      "TestNumber": 22,
+      "Description": "RDP to Domain Controller using cached credentials",
+      "Command": "Invoke-AtomicTest T1021.001 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 23,
+      "Description": "Remote Access Software - ScreenConnect Application Download and Install (Black Basta initial access / C2 channel)",
+      "Commands": [
+        "Invoke-AtomicTest T1219 -TestNumbers 5 -GetPrereqs",
+        "Invoke-AtomicTest T1219 -TestNumbers 5"
+      ]
+    },
+    {
+      "TestNumber": 24,
+      "Description": "Remote Access Software - Splashtop Execution",
+      "Commands": [
+        "Invoke-AtomicTest T1219 -TestNumbers 13 -GetPrereqs",
+        "Invoke-AtomicTest T1219 -TestNumbers 13"
+      ]
+    },
+    {
+      "TestNumber": 25,
+      "Description": "Compress Data and lock with password for Exfiltration with 7zip (WinRAR/7zip staging)",
+      "Commands": [
+        "Invoke-AtomicTest T1560.001 -TestNumbers 4 -GetPrereqs",
+        "Invoke-AtomicTest T1560.001 -TestNumbers 4"
+      ]
+    },
+    {
+      "TestNumber": 26,
+      "Description": "Exfiltrate data with rclone to cloud Storage - Mega (Windows), emulating RClone/WinSCP double-extortion exfil",
+      "Commands": [
+        "Invoke-AtomicTest T1567.002 -GetPrereqs",
+        "Invoke-AtomicTest T1567.002"
+      ]
+    },
+    {
+      "TestNumber": 27,
+      "Description": "Exfiltration Over Alternative Protocol - FTP - Rclone",
+      "Commands": [
+        "Invoke-AtomicTest T1048.003 -TestNumbers 7 -GetPrereqs",
+        "Invoke-AtomicTest T1048.003 -TestNumbers 7"
+      ]
+    },
+    {
+      "TestNumber": 28,
+      "Description": "Windows - Stop service by killing process",
+      "Command": "Invoke-AtomicTest T1489 -TestNumbers 3"
+    },
+    {
+      "TestNumber": 29,
+      "Description": "Windows - Delete Volume Shadow Copies",
+      "Command": "Invoke-AtomicTest T1490 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 30,
+      "Description": "Windows - Disable Windows Recovery Console Repair",
+      "Command": "Invoke-AtomicTest T1490 -TestNumbers 4"
+    },
+    {
+      "TestNumber": 31,
+      "Description": "Data Encrypted with GPG4Win, emulating Black Basta's ChaCha20 + RSA-4096 encryption with .basta extension",
+      "Commands": [
+        "New-Item -ItemType File -Path \"$env:temp\\test.txt\" -Value \"Hello World!\" -Force",
+        "Invoke-AtomicTest T1486 -TestNumbers 8 -GetPrereqs",
+        "Invoke-AtomicTest T1486 -TestNumbers 8"
+      ]
+    },
+    {
+      "TestNumber": 32,
+      "Description": "Ransom Note Drop",
+      "Command": "Invoke-AtomicTest T1486 -TestNumbers 5"
+    },
+    {
+      "TestNumber": 33,
+      "Description": "Replace Desktop Wallpaper",
+      "Command": "Invoke-AtomicTest T1491.001 -TestNumbers 1"
+    },
+    {
+      "TestNumber": 34,
+      "Description": "Clear Logs",
+      "Command": "Invoke-AtomicTest T1685.005 -TestNumbers 1"
+    }
+  ]
+}
